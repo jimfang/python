@@ -126,28 +126,29 @@ for key in (my_dict):
 	
 	code_len = len(key)
 	#print code_len
-	#print value_idcn
+	print value_idcn
 	#print 'key=%s, value=%s' % (key, my_dict[key])  
-	#print 'key= %s -----' %(key)
+	print 'key= %s -----' %(key)
 	#print my_dict[key]
 	#search in file jpg list
 	for item in files_jpg:
 		#print item[0:17]
 		#if item.find(my_dict[key]):
 		#if item[0:17] in my_dict[key][0:17]:
-		#print item#[-24:]
-		if value_idcn in item[-22:]:
-			if key in item[:code_len]:
+		#print item[-24:]
+		#print item[:code_len]
+		if value_idcn in item[-24:]:
+			if key == item[:code_len]:
 				#print '--found--'
 				#print item
 				#copy 
 				if dest_name != '':				
 					srcname = os.path.join(src_path, item)
 					#newfile = my_dict[key]+item[-6:]
-					newfile = '10_' + my_dict[key][code_len+1:code_len+14]+item[-4:]
+					newfile = '10_' + my_dict[key][code_len+1:code_len+14]+item[-6:]
 					dest_name = os.path.join(new_path, newfile)
-					#print srcname
-					#print dest_name
+					print srcname
+					print dest_name
 					#shutil.copy2(srcname, new_path)
 					shutil.copy(srcname, dest_name)
 				
@@ -157,6 +158,18 @@ for key in (my_dict):
 	if found >= 1:
 		my_dict[key] = ''
 
+
+		
+print '--- No id found ---'		
+for key in (my_dict):  
+	if my_dict[key] != '':
+		print 'key=%s, value=%s' % (key, my_dict[key]) 
+		
+print
+
+#print '---- No need jpg ----'
+#for item in files_tmp:  
+#	print item 
 	
 print '--Done IE ID --'
 	
